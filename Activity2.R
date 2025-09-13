@@ -219,3 +219,119 @@ points(x.plot,
        col = "royalblue3",
        lwd = 4, 
        lty = 2)
+
+
+#pnorm(value to evaluate at (note this will evaluate for all values and below),mean, standard deviation)
+pnorm(0,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+#pnrom with 5 gives me all probability (area of the curve) below 5 
+pnorm(5,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+#pnrom with 5 gives me all probability (area of the curve) below 5 
+pnorm(5,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))- pnorm(0,
+                                                        mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+                                                        sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+#pnorm of 20 gives me all probability (area of the curve) below 20 
+#subtracting from one leaves me with the area above 20
+1 - pnorm(20,
+          mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+          sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+#pnorm of 20 gives me all probability (area of the curve) below 20 
+#subtracting from one leaves me with the area above 20
+qnorm(0.95,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+
+#####Q6#####
+highThreshold <- qnorm(0.95,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE),
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+1-pnorm(highThreshold,
+      mean(datW$TAVE[datW$siteN == 1],na.rm=TRUE)+4,
+      sd(datW$TAVE[datW$siteN == 1],na.rm=TRUE))
+#####Q6#####
+
+#####Q7#####
+hist(datW$PRCP[datW$siteN == 1],
+     freq=FALSE, 
+     main = paste(levels(datW$NAME)[1]),
+     xlab = "Average daily precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+#####Q7#####
+
+#####Q8#####
+annualPRCP1 <- aggregate(datW$PRCP[datW$siteN == 1], by=list(datW$year[datW$siteN == 1]), FUN="sum",na.rm=TRUE)
+colnames(annualPRCP1) <- c("Year","AnnualPRCP")
+annualPRCP1$Year <- as.numeric(annualPRCP1$Year)
+annualPRCP1
+hist(annualPRCP1$AnnualPRCP,
+     freq=TRUE, 
+     main = paste(levels(datW$NAME)[1]),
+     xlab = "Annual precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+
+annualPRCP2 <- aggregate(datW$PRCP[datW$siteN == 2], by=list(datW$year[datW$siteN == 2]), FUN="sum",na.rm=TRUE)
+colnames(annualPRCP2) <- c("Year","AnnualPRCP")
+annualPRCP2$Year <- as.numeric(annualPRCP5$Year)
+annualPRCP2
+hist(annualPRCP2$AnnualPRCP,
+     freq=TRUE, 
+     main = paste(levels(datW$NAME)[2]),
+     xlab = "Annual precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+
+annualPRCP3 <- aggregate(datW$PRCP[datW$siteN == 3], by=list(datW$year[datW$siteN == 3]), FUN="sum",na.rm=TRUE)
+colnames(annualPRCP3) <- c("Year","AnnualPRCP")
+annualPRCP3$Year <- as.numeric(annualPRCP5$Year)
+annualPRCP3
+hist(annualPRCP3$AnnualPRCP,
+     freq=TRUE, 
+     main = paste(levels(datW$NAME)[3]),
+     xlab = "Annual precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+
+annualPRCP4 <- aggregate(datW$PRCP[datW$siteN == 4], by=list(datW$year[datW$siteN == 4]), FUN="sum",na.rm=TRUE)
+colnames(annualPRCP4) <- c("Year","AnnualPRCP")
+annualPRCP4$Year <- as.numeric(annualPRCP4$Year)
+annualPRCP4
+hist(annualPRCP4$AnnualPRCP,
+     freq=TRUE, 
+     main = paste(levels(datW$NAME)[4]),
+     xlab = "Annual precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+
+annualPRCP5 <- aggregate(datW$PRCP[datW$siteN == 5], by=list(datW$year[datW$siteN == 5]), FUN="sum",na.rm=TRUE)
+colnames(annualPRCP5) <- c("Year","AnnualPRCP")
+annualPRCP5$Year <- as.numeric(annualPRCP5$Year)
+annualPRCP5
+hist(annualPRCP5$AnnualPRCP,
+     freq=TRUE, 
+     main = paste(levels(datW$NAME)[5]),
+     xlab = "Annual precipitation (mm)", 
+     ylab="Relative frequency",
+     col="green",
+     border="white")
+#####Q8#####
+
+#####Q9#####
+mean(annualPRCP1$AnnualPRCP)
+mean(annualPRCP2$AnnualPRCP)
+mean(annualPRCP3$AnnualPRCP)
+mean(annualPRCP4$AnnualPRCP)
+mean(annualPRCP5$AnnualPRCP)
+averageTemp
+#####Q9#####
