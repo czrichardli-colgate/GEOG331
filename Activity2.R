@@ -271,7 +271,7 @@ colnames(annualPRCP1) <- c("Year","AnnualPRCP")
 annualPRCP1$Year <- as.numeric(annualPRCP1$Year)
 annualPRCP1
 hist(annualPRCP1$AnnualPRCP,
-     freq=TRUE, 
+     freq=FALSE, 
      main = paste(levels(datW$NAME)[1]),
      xlab = "Annual precipitation (mm)", 
      ylab="Relative frequency",
@@ -280,10 +280,10 @@ hist(annualPRCP1$AnnualPRCP,
 
 annualPRCP2 <- aggregate(datW$PRCP[datW$siteN == 2], by=list(datW$year[datW$siteN == 2]), FUN="sum",na.rm=TRUE)
 colnames(annualPRCP2) <- c("Year","AnnualPRCP")
-annualPRCP2$Year <- as.numeric(annualPRCP5$Year)
+annualPRCP2$Year <- as.numeric(annualPRCP2$Year)
 annualPRCP2
 hist(annualPRCP2$AnnualPRCP,
-     freq=TRUE, 
+     freq=FALSE, 
      main = paste(levels(datW$NAME)[2]),
      xlab = "Annual precipitation (mm)", 
      ylab="Relative frequency",
@@ -292,10 +292,10 @@ hist(annualPRCP2$AnnualPRCP,
 
 annualPRCP3 <- aggregate(datW$PRCP[datW$siteN == 3], by=list(datW$year[datW$siteN == 3]), FUN="sum",na.rm=TRUE)
 colnames(annualPRCP3) <- c("Year","AnnualPRCP")
-annualPRCP3$Year <- as.numeric(annualPRCP5$Year)
+annualPRCP3$Year <- as.numeric(annualPRCP3$Year)
 annualPRCP3
 hist(annualPRCP3$AnnualPRCP,
-     freq=TRUE, 
+     freq=FALSE, 
      main = paste(levels(datW$NAME)[3]),
      xlab = "Annual precipitation (mm)", 
      ylab="Relative frequency",
@@ -307,7 +307,7 @@ colnames(annualPRCP4) <- c("Year","AnnualPRCP")
 annualPRCP4$Year <- as.numeric(annualPRCP4$Year)
 annualPRCP4
 hist(annualPRCP4$AnnualPRCP,
-     freq=TRUE, 
+     freq=FALSE, 
      main = paste(levels(datW$NAME)[4]),
      xlab = "Annual precipitation (mm)", 
      ylab="Relative frequency",
@@ -319,7 +319,7 @@ colnames(annualPRCP5) <- c("Year","AnnualPRCP")
 annualPRCP5$Year <- as.numeric(annualPRCP5$Year)
 annualPRCP5
 hist(annualPRCP5$AnnualPRCP,
-     freq=TRUE, 
+     freq=FALSE, 
      main = paste(levels(datW$NAME)[5]),
      xlab = "Annual precipitation (mm)", 
      ylab="Relative frequency",
@@ -335,3 +335,4 @@ mean(annualPRCP4$AnnualPRCP)
 mean(annualPRCP5$AnnualPRCP)
 averageTemp
 #####Q9#####
+
