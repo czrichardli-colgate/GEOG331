@@ -117,7 +117,7 @@ points(datW$DD[lightscale > 0], lightscale[lightscale > 0],
        col= "tomato3", pch=19)
 
 #####Q5#####
-assert(nrow(datW)==length(lightscale), "error: unequal values")
+assert(length(datW$precipitation)==length(lightscale), "error: unequal values")
 assert((max(datW$precipitation)/max(datW$lightning.acvitivy)) * datW$lightning.acvitivy[1024]==lightscale[1024], "error: unequal values")
 #####Q5#####
 
@@ -128,17 +128,29 @@ datW$air.tempQ2 <- ifelse(datW$precipitation  >= 2 & datW$lightning.acvitivy >0,
                           ifelse(datW$precipitation > 5, NA, datW$air.tempQ1))
 
 #####Q6#####
-windscale <- (max(datW$precipitation)/max(datW$wind.speed)) * datW$wind.speed
-points(datW$DD[!is.na(datW$air.tempQ2)], windscale[!is.na(datW$air.tempQ2)],
-       col= "black", pch=15)  
+plot(datW$DD , datW$wind.speed, xlab = "Day of Year", ylab = "Wind Speed",
+     type="n")
+datW$wind.speedQ2 <- ifelse(datW$precipitation  >= 2 & datW$lightning.acvitivy >0, NA,
+                          ifelse(datW$precipitation > 5, NA, datW$wind.speed))
+points(datW$DD, datW$wind.speedQ2,
+       col= "black", pch=15) 
+lines(datW$DD, datW$wind.speedQ2,
+       col= "black", pch=15) 
+assert(length(datW$air.tempQ2)==length(datW$wind.speedQ2), "error: unequal values")
 #####Q6#####
 
 #####Q7#####
-plot(datW$DD , datW$soil.moisture*100, xlab = "Day of Year", ylab = "Soil Temperature",
+plot(datW$DD , datW$soil.moisture, xlab = "Day of Year", ylab = "Soil Moisture",
+     type="n")
+points(datW$DD, datW$soil.moisture,
+       col= "blue")
+points(datW$DD, datW$precipitation,
+       col= rgb(95/255,158/255,160/255,.5), pch=15)
+plot(datW$DD , datW$soil.temp, xlab = "Day of Year", ylab = "Soil Temperature",
      type="n")
 points(datW$DD, datW$soil.temp,
        col= "red")
-points(datW$DD, datW$soil.moisture*100,
-       col= "blue")
+lines(datW$DD, datW$air.temperature,
+       col= rgb(95/255,158/255,160/255,.5), pch=15)
 #####Q7#####
 
