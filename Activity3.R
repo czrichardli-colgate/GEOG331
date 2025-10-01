@@ -154,3 +154,37 @@ lines(datW$DD, datW$air.temperature,
        col= rgb(95/255,158/255,160/255,.5), pch=15)
 #####Q7#####
 
+#####Q8#####
+datW$soil.moistureQ2 <- ifelse(datW$precipitation  >= 2 & datW$lightning.acvitivy >0, NA,
+                            ifelse(datW$precipitation > 5, NA, datW$soil.moisture))
+datW$soil.tempQ2 <- ifelse(datW$precipitation  >= 2 & datW$lightning.acvitivy >0, NA,
+                            ifelse(datW$precipitation > 5, NA, datW$soil.temp))
+length(which(!is.na(datW$air.tempQ2)))
+#####Q8#####
+
+#####Q9#####
+plot(datW$DD , datW$soil.moisture, xlab = "Day of Year", ylab = "Soil Moisture (m^3/m^3)",
+     type="n",xlim=c(163,195))
+points(datW$DD, datW$soil.moistureQ2,
+       col= "blue",pch=15)
+title(main="Soil Moisture")
+
+plot(datW$DD , datW$air.temperature, xlab = "Day of Year", ylab = "Air Temperature (°C)",
+     type="n",xlim=c(163,208))
+points(datW$DD, datW$air.tempQ2,
+       col= "red",pch=15)
+title(main="Air Temperature")
+
+plot(datW$DD , datW$soil.temperature, xlab = "Day of Year", ylab = "Soil Temperature (°C)",
+     type="n",ylim=c(8,27),xlim=c(163,193))
+points(datW$DD, datW$soil.tempQ2,
+       col= "brown",pch=15)
+title(main="Soil Temperature")
+
+plot(datW$DD , datW$precipitation, xlab = "Day of Year", ylab = "Precipitation (mm)",
+     type="n",xlim=c(163,208))
+points(datW$DD, datW$precipitation,
+       col= "lightblue",pch=15)
+title(main="Precipitation")
+#####Q9#####
+
