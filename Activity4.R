@@ -43,7 +43,7 @@ for(i in L){
 height <- data.frame(Species = c("virginica","setosa","versicolor"),
                      Height.cm = c(60,100,11.8))
 
-
+new_iris <- iris %>% left_join(height, by = "Species")
 
 #####################################
 ##### Part 3: plots in ggplot2  #####
@@ -54,12 +54,16 @@ plot(iris$Sepal.Length,iris$Sepal.Width)
 
 #3a. now make the same plot in ggplot
 
+ggplot(data=iris,aes(Sepal.Length,Sepal.Width))+geom_point()
 
 #3b. make a scatter plot with ggplot and get rid of  busy grid lines
 
+ggplot(data=iris,aes(Sepal.Length,Sepal.Width))+geom_point()+theme_classic()
 
 #3c. make a scatter plot with ggplot, remove grid lines, add a title and axis labels, 
 #    show species by color, and make the point size proportional to petal length
+
+ggplot(data=iris,aes(Sepal.Length,Sepal.Width,color=Species,size=Petal.Length))+geom_point()+theme_classic()+labs(x="Sepal length (cm)",y="Sepal width (cm)",title="Scatter plot for the sepal width in relation to the sepal length of an iris")
 
 #####################################
 ##### Question: how did         #####
