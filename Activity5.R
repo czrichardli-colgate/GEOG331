@@ -210,11 +210,11 @@ legend("topright", c("mean","1 standard deviation","2017"), #legend items
 
 library(dplyr)
 
-datP$ymd <- date(dateP)
+datP$ymd <- as.Date(dateP)
 datPDaily <- aggregate(datP$HPCP, by=list(datP$ymd), FUN="length")
 colnames(datPDaily) <- c("ymd","prcpCount")
 
-datD$ymd <- date(datesD)
+datD$ymd <- as.Date(datesD)
 datPDaily$prcpFull <- ifelse(datPDaily$prcpCount==24,TRUE,FALSE)
 datPDaily
 
@@ -224,7 +224,9 @@ datD
 plot(datD$decYear, datD$discharge, type="l", xlab="Year", ylab=expression(paste("Discharge ft"^"3 ","sec"^"-1")))
 
 
-points(datD$ymd[datD$prcpFull],datD$discharge[datD$prcpFull],col = "blue",pch = 16)
+points(datD$decYear[datD$prcpFull],datD$discharge[datD$prcpFull],col = "blue",pch = 16)
 
 #####Q7#####
+
+
 
