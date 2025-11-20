@@ -34,19 +34,20 @@ ggplot(data=datJoinedDaily,aes(x=dailyTemp,y=dailyCO2))+geom_point()+labs(x="Dai
 
 summary(lm(datJoinedDaily$dailyCO2~datJoinedDaily$dailyTemp))
 
-
+ggplot(data=datJoinedDaily,aes(x=date,y=dailyCO2))+geom_line()+labs(x="Date",y="Daily CO2 (ppm)",
+                                                                          title="Correlation between date and daily CO2")
 
 #Monthly
 datJoinedMonthlyCO2 = aggregate(as.numeric(gsub(" ppm","",datJoined$CO2)), by=list(datJoined$month), FUN="mean",na.rm = TRUE)
-colnames(datJoinedMonthlyCO2) <- c("date","monthlyCO2")
+colnames(datJoinedMonthlyCO2) <- c("month","monthlyCO2")
 datJoinedMonthlyCO2
 
 datJoinedMonthlyTemp = aggregate(as.numeric(gsub("°C","",datJoined$Temperature)), by=list(datJoined$month), FUN="mean",na.rm = TRUE)
-colnames(datJoinedMonthlyTemp) <- c("date","monthlyTemp")
+colnames(datJoinedMonthlyTemp) <- c("month","monthlyTemp")
 datJoinedMonthlyTemp
 
 library(dplyr)
-datJoinedMonthly = left_join(datJoinedMonthlyCO2,datJoinedMonthlyTemp,by = "date")
+datJoinedMonthly = left_join(datJoinedMonthlyCO2,datJoinedMonthlyTemp,by = "month")
 datJoinedMonthly
 
 library(ggplot2)
@@ -54,3 +55,6 @@ ggplot(data=datJoinedMonthly,aes(x=monthlyTemp,y=monthlyCO2))+geom_point()+labs(
         title="Correlation between monthly temperature and monthly CO2")+geom_smooth(method = "lm")
 
 summary(lm(datJoinedMonthly$monthlyCO2~datJoinedMonthly$monthlyTemp))
+
+ggplot(data=datJoinedMonthly,aes(x=month,y=monthlyCO2))+geom_line()+labs(x="Month",y="Monthly CO2 (ppm)",
+                                                                    title="Correlation between date and monthly CO2")
