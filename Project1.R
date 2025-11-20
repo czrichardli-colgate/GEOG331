@@ -57,4 +57,4 @@ ggplot(data=datJoinedMonthly,aes(x=monthlyTemp,y=monthlyCO2))+geom_point()+labs(
 summary(lm(datJoinedMonthly$monthlyCO2~datJoinedMonthly$monthlyTemp))
 
 ggplot(data=datJoinedMonthly,aes(x=month,y=monthlyCO2))+geom_line()+labs(x="Month",y="Monthly CO2 (ppm)",
-                                                                    title="Correlation between date and monthly CO2")
+                                                                    title="Correlation between month and monthly CO2")
